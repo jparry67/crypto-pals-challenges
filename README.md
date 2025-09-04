@@ -1,5 +1,5 @@
 # crypto-pals-challenges
-Solutions for crypto challenges at [cryptopals.com](https://cryptopals.com/)
+Here are my solutions for the crypto challenges at [cryptopals.com](https://cryptopals.com/) in python!
 
 # Completed Challenges
 ## Set 1: Basics
