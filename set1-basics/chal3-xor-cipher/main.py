@@ -12,7 +12,7 @@ How? Devise some method for "scoring" a piece of English plaintext. Character fr
 Example usage:
 python main.py 1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736
 Output:
-
+Best match: Cooking MC's like a pound of bacon
 """
 
 from argparse import ArgumentParser
