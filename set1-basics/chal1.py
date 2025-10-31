@@ -13,33 +13,13 @@ Cryptopals Rule
 Always operate on raw bytes, never on encoded strings. Only use hex and base64 for pretty-printing.
 
 Example usage:
-python main.py 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
+python chal1.py 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
 Output:
 SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
 """
 
 from argparse import ArgumentParser
-
-def validate_hex(hex):
-  if len(hex) % 2 == 1:
-    raise ValueError("hex string must have an even number of characters")
-  for char in hex:
-    if not char.isnumeric() and not char in "abcdefABCDEF":
-      raise ValueError("hex string must only contain numbers and letters A-F")
-
-def hex_char_to_int(hex_char):
-  if hex_char.isnumeric():
-    return int(hex_char)
-  return ord(hex_char.lower()) - 87
-
-def hex_to_bytes(hex):
-  bytes = bytearray()
-  for i in range(0, len(hex), 2):
-    first_hex_int = hex_char_to_int(hex[i])
-    second_hex_int = hex_char_to_int(hex[i+1])
-    byte_int_val = (first_hex_int << 4) + second_hex_int
-    bytes.append(byte_int_val)
-  return bytes
+from crypto_utils import validate_hex, hex_char_to_int, hex_to_bytes
 
 def byte_to_base64_char(byte):
   if byte < 26:
