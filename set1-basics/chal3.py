@@ -16,28 +16,7 @@ Best match: Cooking MC's like a pound of bacon
 """
 
 from argparse import ArgumentParser
-from crypto_utils import validate_hex, hex_char_to_int, hex_to_bytes, xor_bytearrays
-
-def generate_xor_options(xor_length):
-    xor_options = []
-    # uppercase letters
-    for i in range(65, 91):
-        xor_options.append(bytearray([i]) * xor_length)
-    # lowercase letters
-    for i in range(97, 123):
-        xor_options.append(bytearray([i]) * xor_length)
-    return xor_options
-
-def score_string_validity(string):
-    score = 0
-    for char in string:
-        if char in "aeiouAEIOU":
-            score += 3
-        elif char.isalpha():
-            score += 2
-        elif char in "\"'{}()_-,.!":
-            score += 1
-    return score
+from crypto_utils import validate_hex, hex_char_to_int, hex_to_bytes, xor_bytearrays, generate_xor_options, score_string_validity
 
 parser = ArgumentParser()
 parser.add_argument("hex", help="the hex encoded string to decode")
@@ -51,7 +30,6 @@ option_scores = []
 for option in xor_options:
     xor_bytes = xor_bytearrays(hex_bytes, option)
     option_score = score_string_validity(xor_bytes.decode('utf-8'))
-    print(option_score)
     option_scores.append((option_score, xor_bytes.decode('utf-8')))
 option_scores.sort(reverse=True)
 

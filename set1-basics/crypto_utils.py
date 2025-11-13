@@ -24,3 +24,33 @@ def xor_bytearrays(first_bytes, second_bytes):
   for i in range(len(first_bytes)):
     xor_bytes.append(first_bytes[i] ^ second_bytes[i])
   return xor_bytes
+
+def generate_xor_options(xor_length):
+  xor_options = []
+  # numbers
+  for i in range(48, 58):
+    xor_options.append(bytearray([i]) * xor_length)
+  # uppercase letters
+  for i in range(65, 91):
+    xor_options.append(bytearray([i]) * xor_length)
+  # lowercase letters
+  for i in range(97, 123):
+    xor_options.append(bytearray([i]) * xor_length)
+  return xor_options
+
+def score_string_validity(string):
+  score = 0
+  for char in string:
+    if char in "aeiouAEIOU":
+      score += 4
+      if char.islower():
+        score += 1
+    elif char.isalpha():
+      score += 3
+      if char.islower():
+        score += 1
+    elif char.isspace():
+      score += 2
+    elif char in "\"'{}()_-,.!":
+      score += 1
+  return score
