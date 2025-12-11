@@ -20,18 +20,11 @@ Output:
 """
 
 from argparse import ArgumentParser
-from crypto_utils import validate_hex, hex_char_to_int, hex_to_bytes, xor_bytearrays
+from crypto_utils import validate_hex, int_to_hex_char, hex_char_to_int, hex_to_bytes, xor_bytearrays
 
 def validate_lengths(first_buf, second_buf):
   if len(first_buf) != len(second_buf):
     raise ValueError("buffer strings must be the same length")
-
-def int_to_hex_char(int):
-  if int < 0 or int > 15:
-    raise ValueError("unexpected int for hex char")
-  if int < 10:
-    return str(int)
-  return chr(int + 88)
 
 def bytes_to_hex(bytes):
   hex_str = ''

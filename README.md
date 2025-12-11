@@ -7,3 +7,4 @@ Here are my solutions for the crypto challenges at [cryptopals.com](https://cryp
 - 2: Fixed XOR
 - 3: Single-byte XOR cipher
 - 4: Detect single-character XOR
+- 5: Implement repeating-key XOR

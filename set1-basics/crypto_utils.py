@@ -10,6 +10,21 @@ def hex_char_to_int(hex_char):
     return int(hex_char)
   return ord(hex_char.lower()) - 87
 
+def int_to_hex_char(int_val):
+  if int_val < 0 or int_val > 15:
+    raise ValueError("unexpected int for hex char")
+  if int_val < 10:
+    return str(int_val)
+  return chr(int_val + 87)
+
+def int_to_hex_chars(int_val):
+  if int_val < 0 or int_val > 255:
+    raise ValueError("unexpected int for two digit hex char")
+  first = int_to_hex_char(int_val // 16)
+  second = int_to_hex_char(int_val % 16)
+  print(int_val//16, first, int_val % 16, second)
+  return first + second
+
 def hex_to_bytes(hex):
   bytes = bytearray()
   for i in range(0, len(hex), 2):
